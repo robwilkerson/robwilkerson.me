@@ -9,6 +9,7 @@
   // Apply a saved theme before first paint so the page doesn't flash. Dark is the default.
   try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -20,7 +21,7 @@
 <main class="wrap">
   <div class="photo"><img src="images/causeway.jpg" width="1600" height="1200" alt="A wet road running along a rocky causeway into fog, with power towers in the distance"></div>
   <section class="text">
-    <h1>Rob Wilkerson</h1>
+    <h1><span class="logo" aria-hidden="true"></span>Rob Wilkerson</h1>
     <div class="role">Practicing engineering leader, aspiring software engineer</div>
     <div class="tagline">I build teams and dabble in code.</div>
     <p>I've been an engineering leader and software engineer for over 25 years. Before that, I spent time as an architect, a carpenter, and a paratrooper. Never a butcher, baker, or candlestick maker.</p>

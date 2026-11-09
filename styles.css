@@ -1,6 +1,6 @@
 /* Catppuccin Macchiato (dark) and Latte (light) */
-[data-theme="dark"]  { --bg:#1e2030; --text:#b8c0e0; --strong:#cad3f5; --muted:#8087a2; --accent:#8aadf4; --line:#363a4f; --code:#a6da95; --code2:#f5a97f; color-scheme:dark; }
-[data-theme="light"] { --bg:#eff1f5; --text:#4c4f69; --strong:#303446; --muted:#7c7f93; --accent:#1e66f5; --line:#ccd0da; --code:#40a02b; --code2:#fe640b; color-scheme:light; }
+[data-theme="dark"]  { --bg:#1e2030; --text:#b8c0e0; --strong:#cad3f5; --muted:#8087a2; --accent:#8aadf4; --line:#363a4f; --code:#a6da95; --code2:#f5a97f; --logo-opacity:.25; color-scheme:dark; }
+[data-theme="light"] { --bg:#eff1f5; --text:#4c4f69; --strong:#303446; --muted:#7c7f93; --accent:#1e66f5; --line:#ccd0da; --code:#40a02b; --code2:#fe640b; --logo-opacity:1; color-scheme:light; }
 
 * { box-sizing:border-box; }
 body { margin:0; background:var(--bg); color:var(--text); font-family:Inter,system-ui,sans-serif; transition:background .2s,color .2s; }
@@ -8,7 +8,11 @@ body { margin:0; background:var(--bg); color:var(--text); font-family:Inter,syst
 .photo { position:relative; overflow:hidden; }
 .photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:right center; display:block; }
 .text { padding:clamp(32px,7vw,96px) clamp(24px,6vw,88px); display:flex; flex-direction:column; justify-content:center; max-width:720px; }
-h1 { margin:0; font-size:clamp(36px,5vw,56px); font-weight:700; letter-spacing:-.025em; color:var(--strong); }
+/* The favicon's shape as a mask, so the page tints it with a theme token instead of keeping a second copy.
+   It hangs above the heading out of flow, so the text block centers as if it weren't there.
+   The negative left offset cancels the circle's 1/32 inset so its edge lines up with the R's stem. */
+.logo { position:absolute; bottom:100%; left:-4px; display:block; width:130px; height:130px; margin-bottom:28px; background:var(--line); opacity:var(--logo-opacity); mask:url(favicon.svg) center/contain no-repeat; }
+h1 { position:relative; margin:0; font-size:clamp(36px,5vw,56px); font-weight:700; letter-spacing:-.025em; color:var(--strong); }
 .role { margin-top:6px; color:var(--muted); font-size:16px; }
 .tagline { margin:36px 0 22px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:19px; color:var(--code); }
 .tagline::before { content:"$ "; color:var(--accent); }
@@ -28,4 +32,6 @@ p { font-size:16.5px; line-height:1.7; margin:0 0 14px; }
 @media (max-width: 760px) {
   .wrap { grid-template-columns:1fr; }
   .photo { min-height:42vh; }
+  /* Stacked layout: back in flow, or it would hang over the photo. */
+  .logo { position:static; margin-left:-4px; }
 }
